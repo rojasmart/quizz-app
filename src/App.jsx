@@ -1,11 +1,7 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import StartPage from "./pages/StartPage";
 
 function App() {
-  return (
-    <ChakraProvider>
-      <h1>hello</h1>
-    </ChakraProvider>
-  );
+  return <StartPage />;
 }
 
 export default App;
