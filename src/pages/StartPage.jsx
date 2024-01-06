@@ -7,18 +7,14 @@ import {
   HStack,
   Switch,
   FormControl,
-  FormLabel,
 } from "@chakra-ui/react";
 
 export default function StartPage() {
   return (
     <>
       <HStack>
-        <FormControl display="flex" alignItems="center">
-          <FormLabel htmlFor="email-alerts" mb="0">
-            change theme
-          </FormLabel>
-          <Switch id="email-alerts" />
+        <FormControl display="flex" alignItems="right">
+          <Switch id="change-theme" />
         </FormControl>
       </HStack>
       <Stack
@@ -31,13 +27,14 @@ export default function StartPage() {
       >
         <Container maxW="lg">
           <Text fontSize="5xl">Welcome to the Frontend Quiz!</Text>
+          <Text fontSize="md">Pick a subject to get started</Text>
         </Container>
         <Container maxW="lg">
           <VStack>
             <Button size="lg">HTML</Button>
             <Button size="lg">CSS</Button>
             <Button size="lg">Javascript</Button>
-            <Button size="lg">four Accessibility</Button>
+            <Button size="lg">Accessibility</Button>
           </VStack>
         </Container>
       </Stack>
