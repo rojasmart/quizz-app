@@ -1,29 +1,24 @@
 import {
   Container,
+  Card,
+  CardBody,
   Stack,
   Text,
   Button,
   VStack,
-  HStack,
-  Switch,
-  FormControl,
+  Image,
+  Box,
 } from "@chakra-ui/react";
 
 export default function StartPage() {
   return (
     <>
-      <HStack>
-        <FormControl display="flex" alignItems="right">
-          <Switch id="change-theme" />
-        </FormControl>
-      </HStack>
       <Stack
         direction={["column", "row"]}
         align="center"
         justify="center"
         spacing="44px"
         p="10"
-        minH="100vh"
       >
         <Container maxW="lg">
           <Text fontSize="5xl">Welcome to the Frontend Quiz!</Text>
@@ -31,6 +26,11 @@ export default function StartPage() {
         </Container>
         <Container maxW="lg">
           <VStack>
+            <Card>
+              <CardBody>
+                <Text>HTML</Text>
+              </CardBody>
+            </Card>
             <Button size="lg">HTML</Button>
             <Button size="lg">CSS</Button>
             <Button size="lg">Javascript</Button>
