@@ -16,9 +16,12 @@ import cssIcon from "../assets/images/icon-css.svg";
 import javascriptIcon from "../assets/images/icon-js.svg";
 import accessibilityIcon from "../assets/images/icon-accessibility.svg";
 
+import ToggleColorMode from "../components/ToggleColorMode";
+
 export default function StartPage() {
   return (
     <>
+      <ToggleColorMode />
       <Stack
         direction={["column", "row"]}
         align="center"
