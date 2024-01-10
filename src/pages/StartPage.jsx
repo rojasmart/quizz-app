@@ -19,10 +19,16 @@ import accessibilityIcon from "../assets/images/icon-accessibility.svg";
 
 import ToggleColorMode from "../components/ToggleColorMode";
 
+import { getQuiz } from "../services/questions";
+
 export default function StartPage() {
+  getQuiz().then((result) => {
+    console.log(result);
+  });
+
   const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     navigate("/questions");
   };
