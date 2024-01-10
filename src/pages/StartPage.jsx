@@ -4,12 +4,13 @@ import {
   CardBody,
   Stack,
   Text,
-  Button,
   VStack,
   HStack,
   Image,
   Box,
 } from "@chakra-ui/react";
+
+import { useNavigate } from "react-router-dom";
 
 import htmlIcon from "../assets/images/icon-html.svg";
 import cssIcon from "../assets/images/icon-css.svg";
@@ -19,6 +20,13 @@ import accessibilityIcon from "../assets/images/icon-accessibility.svg";
 import ToggleColorMode from "../components/ToggleColorMode";
 
 export default function StartPage() {
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    e.preventDefault();
+    navigate("/questions");
+  };
+
   return (
     <>
       <ToggleColorMode />
