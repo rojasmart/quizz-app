@@ -41,7 +41,9 @@ export default function StartPage() {
     navigate("/questions");
   };
 
-  console.log("data", data);
+  const pull_category = (category) => {
+    console.log(category);
+  };
 
   return (
     <>
@@ -59,7 +61,7 @@ export default function StartPage() {
         </Container>
         <Container maxW="lg">
           <form onSubmit={handleSubmit}>
-            <SelectQuestions data={data} />
+            <SelectQuestions data={data} getCategory={pull_category} />
           </form>
         </Container>
       </Stack>
