@@ -23,7 +23,6 @@ import ToggleColorMode from "../components/ToggleColorMode";
 
 import { getQuiz } from "../services/questions";
 import SelectQuestions from "../components/SelectQuestions";
-import accessibilityIcon from "../assets/images/icon-accessibility.svg";
 
 export default function StartPage() {
   const [data, setData] = useState([]);
@@ -38,6 +37,7 @@ export default function StartPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("category", e.target.value);
     navigate("/questions");
   };
 

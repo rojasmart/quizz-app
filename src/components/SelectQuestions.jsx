@@ -1,36 +1,23 @@
-import {
-  Card,
-  CardBody,
-  Text,
-  HStack,
-  Image,
-  Box,
-  VStack,
-} from "@chakra-ui/react";
-import accessibilityIcon from "../assets/images/icon-accessibility.svg";
+import { Stack, Button, Image } from "@chakra-ui/react";
 
+import accessibilityIcon from "../assets/images/icon-html.svg";
 import PropTypes from "prop-types";
 
 const SelectQuestions = ({ data }) => {
+  const handleSubmit = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
-    <VStack>
+    <Stack spacing={4} direction="column">
       {data.map((item, index) => (
         <>
-          <Card width="lg" rounded="3xl" key={index}>
-            <CardBody>
-              <HStack spacing="4">
-                <Box bg="#F6E7FF" p={2} borderRadius="lg">
-                  <Image src={accessibilityIcon} alt="icon-html" />
-                </Box>
-                <Text fontSize="lg" as="b">
-                  {item.title}
-                </Text>
-              </HStack>
-            </CardBody>
-          </Card>
+          <Button leftIcon={<Image src={accessibilityIcon} />} key={index}>
+            {item.title}
+          </Button>
         </>
       ))}
-    </VStack>
+    </Stack>
   );
 };
 
