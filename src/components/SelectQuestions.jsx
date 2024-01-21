@@ -1,6 +1,7 @@
 import { Stack, Button, Image } from "@chakra-ui/react";
 
 import PropTypes from "prop-types";
+import { redirect } from "react-router-dom";
 
 const SelectQuestions = ({ data, getCategory }) => {
   const handleSubmit = (e) => {
@@ -12,10 +13,26 @@ const SelectQuestions = ({ data, getCategory }) => {
       {data.map((item, index) => (
         <>
           <Button
-            leftIcon={<Image src={item.icon} />}
+            leftIcon={
+              <Image
+                src={item.icon}
+                p="8px"
+                borderRadius={"9px"}
+                backgroundColor={"white"}
+              />
+            }
             key={index}
             onClick={handleSubmit}
             value={item.title}
+            pt="40px"
+            pb="40px"
+            sx={{
+              display: "flex",
+              justifyContent: "start",
+              gap: "6",
+              borderRadius: "20px",
+              fontSize: "18",
+            }}
           >
             {item.title}
           </Button>
