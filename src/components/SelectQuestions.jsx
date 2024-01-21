@@ -1,6 +1,5 @@
 import { Stack, Button, Image } from "@chakra-ui/react";
 
-import accessibilityIcon from "../assets/images/icon-html.svg";
 import PropTypes from "prop-types";
 
 const SelectQuestions = ({ data, getCategory }) => {
@@ -13,7 +12,7 @@ const SelectQuestions = ({ data, getCategory }) => {
       {data.map((item, index) => (
         <>
           <Button
-            leftIcon={<Image src={accessibilityIcon} />}
+            leftIcon={<Image src={item.icon} />}
             key={index}
             onClick={handleSubmit}
             value={item.title}
