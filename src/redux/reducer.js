@@ -1,28 +1,30 @@
-const reducer = (
-  quiz = {
-    subject: "",
-    score: 0,
-    currentQuestionNumber: 0,
-  },
-  action
-) => {
+import { START_QUIZ, UPDATE_SCORE, NEXT_QUESTION } from "./actionsTypes";
+
+const initialState = {
+  category: "",
+  score: 0,
+  currentQuestionNumber: 0,
+};
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "START_QUIZ":
-      return { subject: action.subject, score: 0, currentQuestionNumber: 0 };
-    case "UPDATE_SCORE":
+    case START_QUIZ:
+      return { ...state, category: action, score: 0, currentQuestionNumber: 0 };
+    case UPDATE_SCORE:
       return {
-        subject: quiz.subject,
-        score: quiz.score + 1,
-        currentQuestionNumber: quiz.currentQuestionNumber,
+        ...state,
+        subject: action,
+        score: action + 1,
+        currentQuestionNumber: action.currentQuestionNumber,
       };
-    case "NEXT_QUESTION":
+    case NEXT_QUESTION:
       return {
-        subject: quiz.subject,
-        score: quiz.score,
-        currentQuestionNumber: quiz.currentQuestionNumber + 1,
+        subject: action,
+        score: action.score,
+        currentQuestionNumber: action.currentQuestionNumber + 1,
       };
     default:
-      return quiz;
+      return action;
   }
 };
 

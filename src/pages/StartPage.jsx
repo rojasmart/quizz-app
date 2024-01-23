@@ -1,14 +1,4 @@
-import {
-  Container,
-  Stack,
-  Text,
-  VStack,
-  Card,
-  CardBody,
-  HStack,
-  Image,
-  Box,
-} from "@chakra-ui/react";
+import { Container, Stack, Text } from "@chakra-ui/react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -23,9 +13,13 @@ import ToggleColorMode from "../components/ToggleColorMode";
 
 import { getQuiz } from "../services/questions";
 import SelectQuestions from "../components/SelectQuestions";
+import { useDispatch } from "react-redux";
+
+import { handleCategoryChange } from "../redux/actions";
 
 export default function StartPage() {
   const [data, setData] = useState([]);
+  const [category, setCategory] = useState("");
 
   useEffect(() => {
     getQuiz().then((result) => {
@@ -34,15 +28,15 @@ export default function StartPage() {
   }, []);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("category", e.target.value);
+  const handleSubmit = () => {
+    dispatch(handleCategoryChange(category));
     navigate("/questions");
   };
 
   const pull_category = (category) => {
-    console.log(category);
+    setCategory(category);
   };
 
   return (
