@@ -11,7 +11,6 @@ const Questions = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const subject = useSelector((state) => state.category.payload);
-
   const currentQuestionNumber = useSelector(
     (state) => state.currentQuestionNumber
   );
@@ -34,7 +33,11 @@ const Questions = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitting answer", selectedOption);
+    if (selectedOption === currentQuestion.answer) {
+      alert("Correct Answer");
+    } else {
+      alert("Wrong Answer");
+    }
   };
 
   const letters = ["A", "B", "C", "D"];
@@ -48,6 +51,9 @@ const Questions = () => {
       p="10"
     >
       <Container maxW="lg">
+        <Text fontSize="md">
+          Question {currentQuestionNumber} of {allQuestions.length}
+        </Text>
         {currentQuestion && (
           <Text fontSize="5xl">{currentQuestion.question}</Text>
         )}
