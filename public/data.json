@@ -122,8 +122,8 @@
         },
         {
           "question": "Which property is used to change the font of an element?",
-          "options": ["font-style", "text-style", "font-family", "typeface"],
-          "answer": "font-family"
+          "options": ["font-style", "text-style", "fontFamily", "typeface"],
+          "answer": "fontFamily"
         },
         {
           "question": "How do you make each word in a text start with a capital letter?",

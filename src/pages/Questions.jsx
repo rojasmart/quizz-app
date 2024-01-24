@@ -1,14 +1,16 @@
 import { Button, Stack, Container, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { getQuiz } from "../services/questions";
 
 const Questions = () => {
   const [allQuestions, setAllQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(null);
 
+  const [selectedOption, setSelectedOption] = useState(null);
+
   const subject = useSelector((state) => state.category.payload);
+
   const currentQuestionNumber = useSelector(
     (state) => state.currentQuestionNumber
   );
@@ -19,14 +21,19 @@ const Questions = () => {
         if (quiz.title === subject) setAllQuestions(quiz.questions);
       });
     });
-  }, []);
+  }, [subject]);
 
   useEffect(() => {
     setCurrentQuestion(allQuestions[currentQuestionNumber]);
   }, [allQuestions, currentQuestionNumber]);
 
+  const handleOptionClick = (e) => {
+    setSelectedOption(e.target.value);
+  };
+
   const handleSubmit = (e) => {
-    console.log("submitting answer", e.target.value);
+    e.preventDefault();
+    console.log("submitting answer", selectedOption);
   };
 
   return (
@@ -47,7 +54,15 @@ const Questions = () => {
           <Stack spacing={4} direction="column">
             {currentQuestion &&
               currentQuestion.options.map((option, index) => {
-                return <Button key={index}>{option}</Button>;
+                return (
+                  <Button
+                    key={index}
+                    value={option}
+                    onClick={handleOptionClick}
+                  >
+                    {option}
+                  </Button>
+                );
               })}
           </Stack>
           <Button type="submit">Submit Answer</Button>

@@ -4,10 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 
-/* import htmlIcon from "../assets/images/icon-html.svg";
-import cssIcon from "../assets/images/icon-css.svg";
-import javascriptIcon from "../assets/images/icon-js.svg";
-import accessibilityIcon from "../assets/images/icon-accessibility.svg"; */
+import { PropTypes } from "prop-types";
 
 import ToggleColorMode from "../components/ToggleColorMode";
 
@@ -62,3 +59,7 @@ export default function StartPage() {
     </>
   );
 }
+
+SelectQuestions.propTypes = {
+  getCategory: PropTypes.func,
+};
