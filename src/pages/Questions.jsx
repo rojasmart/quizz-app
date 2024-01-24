@@ -1,4 +1,5 @@
-import { Button, Stack, Container, Text } from "@chakra-ui/react";
+import { Button, VStack, Stack, Container, Text } from "@chakra-ui/react";
+
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getQuiz } from "../services/questions";
@@ -36,6 +37,8 @@ const Questions = () => {
     console.log("submitting answer", selectedOption);
   };
 
+  const letters = ["A", "B", "C", "D"];
+
   return (
     <Stack
       direction={["column", "row"]}
@@ -51,21 +54,29 @@ const Questions = () => {
       </Container>
       <Container maxW="lg">
         <form onSubmit={(e) => handleSubmit(e)}>
-          <Stack spacing={4} direction="column">
-            {currentQuestion &&
-              currentQuestion.options.map((option, index) => {
-                return (
-                  <Button
-                    key={index}
-                    value={option}
-                    onClick={handleOptionClick}
-                  >
-                    {option}
-                  </Button>
-                );
-              })}
-          </Stack>
-          <Button type="submit">Submit Answer</Button>
+          <VStack spacing={4}>
+            <Stack spacing={4} direction="column" w="100%">
+              {currentQuestion &&
+                currentQuestion.options.map((option, index) => {
+                  return (
+                    <Button
+                      leftIcon={<Text>{letters[index]}</Text>}
+                      display={"flex"}
+                      justifyContent={"flex-start"}
+                      key={index}
+                      value={option}
+                      onClick={handleOptionClick}
+                      p="10"
+                    >
+                      {option}
+                    </Button>
+                  );
+                })}
+            </Stack>
+            <Button w="100%" colorScheme="purple" type="submit" p="10">
+              Submit Answer
+            </Button>
+          </VStack>
         </form>
       </Container>
     </Stack>
