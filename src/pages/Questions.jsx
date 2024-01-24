@@ -25,6 +25,10 @@ const Questions = () => {
     setCurrentQuestion(allQuestions[currentQuestionNumber]);
   }, [allQuestions, currentQuestionNumber]);
 
+  const handleSubmit = (e) => {
+    console.log("submitting answer", e.target.value);
+  };
+
   return (
     <Stack
       direction={["column", "row"]}
@@ -34,13 +38,20 @@ const Questions = () => {
       p="10"
     >
       <Container maxW="lg">
-        <Text fontSize="5xl">Welcome to the Frontend Quiz!</Text>
-        <Text fontSize="md">Pick a subject to get started</Text>
+        {currentQuestion && (
+          <Text fontSize="5xl">{currentQuestion.question}</Text>
+        )}
       </Container>
       <Container maxW="lg">
-        <Stack spacing={4} direction="column">
-          {currentQuestion && <Button>{currentQuestion.question}</Button>}
-        </Stack>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <Stack spacing={4} direction="column">
+            {currentQuestion &&
+              currentQuestion.options.map((option, index) => {
+                return <Button key={index}>{option}</Button>;
+              })}
+          </Stack>
+          <Button type="submit">Submit Answer</Button>
+        </form>
       </Container>
     </Stack>
   );
