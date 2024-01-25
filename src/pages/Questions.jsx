@@ -1,4 +1,11 @@
-import { Button, VStack, Stack, Container, Text } from "@chakra-ui/react";
+import {
+  Button,
+  VStack,
+  Stack,
+  Container,
+  Text,
+  Progress,
+} from "@chakra-ui/react";
 
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -30,6 +37,8 @@ const Questions = () => {
   const handleCorrectAnswer = () => {
     dispatch({ type: UPDATE_SCORE });
   };
+
+  const totalQuestions = allQuestions.length;
 
   useEffect(() => {
     getQuiz().then((result) => {
@@ -75,6 +84,9 @@ const Questions = () => {
         {currentQuestion && (
           <Text fontSize="5xl">{currentQuestion.question}</Text>
         )}
+        <Container>
+          <Progress value={(currentQuestionNumber / totalQuestions) * 100} />
+        </Container>
       </Container>
       <Container maxW="lg">
         <form onSubmit={(e) => handleSubmit(e)}>
