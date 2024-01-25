@@ -14,14 +14,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         subject: action,
-        score: action + 1,
-        currentQuestionNumber: action.currentQuestionNumber,
+        score: state.score + 1,
+        currentQuestionNumber: state.currentQuestionNumber,
       };
     case NEXT_QUESTION:
       return {
         ...state,
         subject: action,
-        score: action.score,
+        score: state.score,
         currentQuestionNumber: state.currentQuestionNumber + 1,
       };
     default:

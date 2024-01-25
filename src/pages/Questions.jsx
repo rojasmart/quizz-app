@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { getQuiz } from "../services/questions";
 
 import { useDispatch } from "react-redux";
-import { NEXT_QUESTION } from "../redux/actionsTypes";
+import { NEXT_QUESTION, UPDATE_SCORE } from "../redux/actionsTypes";
 
 const Questions = () => {
   const [allQuestions, setAllQuestions] = useState([]);
@@ -17,11 +17,18 @@ const Questions = () => {
   const currentQuestionNumber = useSelector(
     (state) => state.currentQuestionNumber
   );
+  const score = useSelector((state) => state.score);
+
+  console.log("score", score);
 
   const dispatch = useDispatch();
 
   const handleNextQuestion = () => {
     dispatch({ type: NEXT_QUESTION });
+  };
+
+  const handleCorrectAnswer = () => {
+    dispatch({ type: UPDATE_SCORE });
   };
 
   useEffect(() => {
@@ -45,6 +52,7 @@ const Questions = () => {
     if (selectedOption === currentQuestion.answer) {
       alert("Correct Answer");
       handleNextQuestion();
+      handleCorrectAnswer();
     } else {
       alert("Wrong Answer");
     }
@@ -83,6 +91,7 @@ const Questions = () => {
                       value={option}
                       onClick={handleOptionClick}
                       p="10"
+                      colorScheme="blue"
                     >
                       {option}
                     </Button>
