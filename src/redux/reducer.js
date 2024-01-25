@@ -19,9 +19,10 @@ const reducer = (state = initialState, action) => {
       };
     case NEXT_QUESTION:
       return {
+        ...state,
         subject: action,
         score: action.score,
-        currentQuestionNumber: action.currentQuestionNumber + 1,
+        currentQuestionNumber: state.currentQuestionNumber + 1,
       };
     default:
       return action;

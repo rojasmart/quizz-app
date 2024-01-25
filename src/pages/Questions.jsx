@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getQuiz } from "../services/questions";
 
+import { useDispatch } from "react-redux";
+import { NEXT_QUESTION } from "../redux/actionsTypes";
+
 const Questions = () => {
   const [allQuestions, setAllQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(null);
@@ -14,6 +17,12 @@ const Questions = () => {
   const currentQuestionNumber = useSelector(
     (state) => state.currentQuestionNumber
   );
+
+  const dispatch = useDispatch();
+
+  const handleNextQuestion = () => {
+    dispatch({ type: NEXT_QUESTION });
+  };
 
   useEffect(() => {
     getQuiz().then((result) => {
@@ -35,6 +44,7 @@ const Questions = () => {
     e.preventDefault();
     if (selectedOption === currentQuestion.answer) {
       alert("Correct Answer");
+      handleNextQuestion();
     } else {
       alert("Wrong Answer");
     }
