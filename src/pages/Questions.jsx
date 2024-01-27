@@ -13,6 +13,7 @@ import { getQuiz } from "../services/questions";
 
 import { useDispatch } from "react-redux";
 import { NEXT_QUESTION, UPDATE_SCORE } from "../redux/actionsTypes";
+import { current } from "@reduxjs/toolkit";
 
 const Questions = () => {
   const [allQuestions, setAllQuestions] = useState([]);
@@ -50,6 +51,9 @@ const Questions = () => {
 
   useEffect(() => {
     setCurrentQuestion(allQuestions[currentQuestionNumber]);
+    if (currentQuestionNumber === allQuestions.length + 1) {
+      alert(`Your score is ${score}`);
+    }
   }, [allQuestions, currentQuestionNumber]);
 
   const handleOptionClick = (e) => {
