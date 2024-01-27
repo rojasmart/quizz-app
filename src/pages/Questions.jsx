@@ -21,8 +21,11 @@ const Questions = () => {
   const [allQuestions, setAllQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(null);
 
-  //class toggle
+  //class choose answer toggle
   const [isActiveAnswer, setIsActiveAnswer] = useState(false);
+
+  //class correct answer
+  const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
 
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -69,6 +72,8 @@ const Questions = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (selectedOption === currentQuestion.answer) {
+      setIsCorrectAnswer(true);
+
       alert("Correct Answer");
       handleNextQuestion();
       handleCorrectAnswer();
