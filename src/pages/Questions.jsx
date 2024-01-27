@@ -12,12 +12,17 @@ import { useSelector } from "react-redux";
 import { getQuiz } from "../services/questions";
 
 import { useDispatch } from "react-redux";
+
 import { NEXT_QUESTION, UPDATE_SCORE } from "../redux/actionsTypes";
+
 import { current } from "@reduxjs/toolkit";
 
 const Questions = () => {
   const [allQuestions, setAllQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(null);
+
+  //class toggle
+  const [isActiveAnswer, setIsActiveAnswer] = useState(false);
 
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -56,8 +61,9 @@ const Questions = () => {
     }
   }, [allQuestions, currentQuestionNumber]);
 
-  const handleOptionClick = (e) => {
+  const handleOptionClick = (e, index) => {
     setSelectedOption(e.target.value);
+    setIsActiveAnswer(index);
   };
 
   const handleSubmit = (e) => {
@@ -105,7 +111,10 @@ const Questions = () => {
                       justifyContent={"flex-start"}
                       key={index}
                       value={option}
-                      onClick={handleOptionClick}
+                      onClick={(e) => handleOptionClick(e, index)}
+                      className={
+                        isActiveAnswer === index ? "selected-answer" : ""
+                      }
                       p="10"
                       colorScheme="blue"
                     >
