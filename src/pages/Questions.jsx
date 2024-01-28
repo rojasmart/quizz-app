@@ -27,6 +27,9 @@ const Questions = () => {
   //class correct answer
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
 
+  //class wrong answer
+  const [isWrongAnswer, setIsWrongAnswer] = useState(false);
+
   const [selectedOption, setSelectedOption] = useState(null);
 
   const subject = useSelector((state) => state.category.payload);
@@ -72,15 +75,15 @@ const Questions = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (selectedOption === currentQuestion.answer) {
-      setIsCorrectAnswer(true);
-
-      alert("Correct Answer");
-      handleNextQuestion();
       handleCorrectAnswer();
+      setIsCorrectAnswer(true);
+      setIsActiveAnswer(false);
     } else {
-      alert("Wrong Answer");
+      isWrongAnswer(true);
     }
   };
+
+  console.log("selected answer", selectedOption);
 
   const letters = ["A", "B", "C", "D"];
 
@@ -117,9 +120,22 @@ const Questions = () => {
                       key={index}
                       value={option}
                       onClick={(e) => handleOptionClick(e, index)}
-                      className={
-                        isActiveAnswer === index ? "selected-answer" : ""
-                      }
+                      className={`
+          ${isActiveAnswer === index ? "active-answer" : ""} 
+          ${
+            selectedOption === currentQuestion.answer &&
+            isActiveAnswer &&
+            selectedOption === option
+              ? "correct-answer"
+              : ""
+          } 
+          ${
+            selectedOption !== currentQuestion.answer &&
+            selectedOption === option
+              ? "wrong-answer"
+              : ""
+          }
+        `}
                       p="10"
                       colorScheme="blue"
                     >
@@ -128,9 +144,21 @@ const Questions = () => {
                   );
                 })}
             </Stack>
-            <Button w="100%" colorScheme="purple" type="submit" p="10">
-              Submit Answer
-            </Button>
+            {!isCorrectAnswer ? (
+              <Button w="100%" colorScheme="purple" type="submit" p="10">
+                Submit Answer
+              </Button>
+            ) : (
+              <Button
+                w="100%"
+                colorScheme="purple"
+                type="submit"
+                p="10"
+                onClick={handleNextQuestion}
+              >
+                Next Question
+              </Button>
+            )}
           </VStack>
         </form>
       </Container>
