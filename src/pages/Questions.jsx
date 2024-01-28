@@ -37,6 +37,8 @@ const Questions = () => {
 
   const [selectedOption, setSelectedOption] = useState(null);
 
+  const [isNone, setIsNone] = useState(false);
+
   const subject = useSelector((state) => state.category.payload);
   const currentQuestionNumber = useSelector(
     (state) => state.currentQuestionNumber
@@ -72,6 +74,10 @@ const Questions = () => {
     }
   }, [allQuestions, currentQuestionNumber]);
 
+  useEffect(() => {
+    setButtonClicked(false);
+  }, [currentQuestion, isSubmitted]);
+
   const handleOptionClick = (e, index) => {
     setSelectedOption(e.target.value);
     setIsActiveAnswer(index);
@@ -80,7 +86,9 @@ const Questions = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!buttonClicked) {
+      setIsNone(true);
       return;
     } else if (selectedOption === currentQuestion.answer) {
       handleCorrectAnswer();
@@ -88,11 +96,13 @@ const Questions = () => {
       setIsActiveAnswer(false);
       setIsSubmitted(true);
       setButtonClicked(false);
+      setIsNone(false);
     } else {
       setIsWrongAnswer(true);
       setIsActiveAnswer(false);
       setIsSubmitted(true);
       setButtonClicked(false);
+      setIsNone(false);
     }
   };
 
@@ -152,6 +162,13 @@ const Questions = () => {
                                     ? "wrong-answer"
                                     : ""
                                 }
+                                ${
+                                  isSubmitted &&
+                                  selectedOption !== currentQuestion.answer &&
+                                  currentQuestion.answer === option
+                                    ? "correct-answer"
+                                    : ""
+                                }
                               `}
                       p="10"
                       colorScheme="blue"
@@ -176,6 +193,9 @@ const Questions = () => {
               <Button w="100%" colorScheme="purple" type="submit" p="10">
                 Submit Answer
               </Button>
+            )}
+            {!buttonClicked && isNone && (
+              <Text>Please click a button before submitting.</Text>
             )}
           </VStack>
         </form>
