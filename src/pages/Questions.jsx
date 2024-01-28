@@ -7,7 +7,7 @@ import {
   Progress,
 } from "@chakra-ui/react";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getQuiz } from "../services/questions";
 
@@ -15,11 +15,12 @@ import { useDispatch } from "react-redux";
 
 import { NEXT_QUESTION, UPDATE_SCORE } from "../redux/actionsTypes";
 
-import { current } from "@reduxjs/toolkit";
-
 const Questions = () => {
   const [allQuestions, setAllQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(null);
+
+  //class submited answer
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   //class choose answer toggle
   const [isActiveAnswer, setIsActiveAnswer] = useState(false);
@@ -38,12 +39,13 @@ const Questions = () => {
   );
   const score = useSelector((state) => state.score);
 
-  console.log("score", score);
+  console.log("isSubmitted", isSubmitted);
 
   const dispatch = useDispatch();
 
   const handleNextQuestion = () => {
     dispatch({ type: NEXT_QUESTION });
+    setIsSubmitted(false);
   };
 
   const handleCorrectAnswer = () => {
@@ -70,20 +72,21 @@ const Questions = () => {
   const handleOptionClick = (e, index) => {
     setSelectedOption(e.target.value);
     setIsActiveAnswer(index);
+    isActiveAnswer(false);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitted(true);
     if (selectedOption === currentQuestion.answer) {
       handleCorrectAnswer();
       setIsCorrectAnswer(true);
       setIsActiveAnswer(false);
     } else {
-      isWrongAnswer(true);
+      setIsWrongAnswer(true);
+      setIsActiveAnswer(false);
     }
   };
-
-  console.log("selected answer", selectedOption);
 
   const letters = ["A", "B", "C", "D"];
 
@@ -116,26 +119,32 @@ const Questions = () => {
                     <Button
                       leftIcon={<Text>{letters[index]}</Text>}
                       display={"flex"}
+                      type="button"
                       justifyContent={"flex-start"}
                       key={index}
                       value={option}
                       onClick={(e) => handleOptionClick(e, index)}
                       className={`
-          ${isActiveAnswer === index ? "active-answer" : ""} 
-          ${
-            selectedOption === currentQuestion.answer &&
-            isActiveAnswer &&
-            selectedOption === option
-              ? "correct-answer"
-              : ""
-          } 
-          ${
-            selectedOption !== currentQuestion.answer &&
-            selectedOption === option
-              ? "wrong-answer"
-              : ""
-          }
-        `}
+                                ${
+                                  isActiveAnswer === index
+                                    ? "active-answer"
+                                    : ""
+                                } 
+                                ${
+                                  isSubmitted &&
+                                  selectedOption === currentQuestion.answer &&
+                                  selectedOption === option
+                                    ? "correct-answer"
+                                    : ""
+                                } 
+                                ${
+                                  isSubmitted &&
+                                  selectedOption !== currentQuestion.answer &&
+                                  selectedOption === option
+                                    ? "wrong-answer"
+                                    : ""
+                                }
+                              `}
                       p="10"
                       colorScheme="blue"
                     >
@@ -144,19 +153,20 @@ const Questions = () => {
                   );
                 })}
             </Stack>
-            {!isCorrectAnswer ? (
-              <Button w="100%" colorScheme="purple" type="submit" p="10">
-                Submit Answer
-              </Button>
-            ) : (
+            {isSubmitted && (
               <Button
                 w="100%"
                 colorScheme="purple"
-                type="submit"
+                type="button"
                 p="10"
                 onClick={handleNextQuestion}
               >
                 Next Question
+              </Button>
+            )}
+            {!isSubmitted && (
+              <Button w="100%" colorScheme="purple" type="submit" p="10">
+                Submit Answer
               </Button>
             )}
           </VStack>

@@ -14,6 +14,8 @@
   --purple: hsla(277, 91%, 56%);
   --pure-white: hsla(0, 0%, 100%, 1);
   --red: hsla(0, 82%, 63%, 1);
+  --yellow: hsla(49, 100%, 58%, 1);
+  --green: hsla(163, 100%, 41%, 1);
 }
 
 body {
@@ -37,6 +39,12 @@ button {
 }
 
 .active-answer {
+  border: 3px solid var(--yellow);
+}
+.correct-answer {
+  border: 3px solid var(--green);
+}
+.wrong-answer {
   border: 3px solid var(--red);
 }
 
