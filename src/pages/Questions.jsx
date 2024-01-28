@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 
 import { useEffect, useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getQuiz } from "../services/questions";
 
@@ -31,6 +32,9 @@ const Questions = () => {
   //class wrong answer
   const [isWrongAnswer, setIsWrongAnswer] = useState(false);
 
+  //check if button is clicked
+  const [buttonClicked, setButtonClicked] = useState(false);
+
   const [selectedOption, setSelectedOption] = useState(null);
 
   const subject = useSelector((state) => state.category.payload);
@@ -38,8 +42,6 @@ const Questions = () => {
     (state) => state.currentQuestionNumber
   );
   const score = useSelector((state) => state.score);
-
-  console.log("isSubmitted", isSubmitted);
 
   const dispatch = useDispatch();
 
@@ -53,6 +55,7 @@ const Questions = () => {
   };
 
   const totalQuestions = allQuestions.length;
+  const navigate = useNavigate();
 
   useEffect(() => {
     getQuiz().then((result) => {
@@ -65,26 +68,31 @@ const Questions = () => {
   useEffect(() => {
     setCurrentQuestion(allQuestions[currentQuestionNumber]);
     if (currentQuestionNumber === allQuestions.length + 1) {
-      alert(`Your score is ${score}`);
+      navigate("/finalscreen");
     }
   }, [allQuestions, currentQuestionNumber]);
 
   const handleOptionClick = (e, index) => {
     setSelectedOption(e.target.value);
     setIsActiveAnswer(index);
-    isActiveAnswer(false);
+    setButtonClicked(true);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    if (selectedOption === currentQuestion.answer) {
+    if (!buttonClicked) {
+      return;
+    } else if (selectedOption === currentQuestion.answer) {
       handleCorrectAnswer();
       setIsCorrectAnswer(true);
       setIsActiveAnswer(false);
+      setIsSubmitted(true);
+      setButtonClicked(false);
     } else {
       setIsWrongAnswer(true);
       setIsActiveAnswer(false);
+      setIsSubmitted(true);
+      setButtonClicked(false);
     }
   };
 
