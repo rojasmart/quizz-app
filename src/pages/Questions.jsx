@@ -39,9 +39,11 @@ const Questions = () => {
 
   const [isNone, setIsNone] = useState(false);
 
+  const [quizFinished, setQuizFinished] = useState(false);
+
   const subject = useSelector((state) => state.category.payload);
   const currentQuestionNumber = useSelector(
-    (state) => state.currentQuestionNumber
+    (state) => state.currentQuestionNumber + 1
   );
   const score = useSelector((state) => state.score);
 
@@ -69,7 +71,9 @@ const Questions = () => {
 
   useEffect(() => {
     setCurrentQuestion(allQuestions[currentQuestionNumber]);
-    if (currentQuestionNumber === allQuestions.length + 1) {
+    console.log("currentQuestionNumber", currentQuestionNumber);
+    if (allQuestions && currentQuestionNumber === allQuestions.length) {
+      setQuizFinished(true);
       navigate("/finalscreen");
     }
   }, [allQuestions, currentQuestionNumber]);
