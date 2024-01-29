@@ -7,12 +7,11 @@ import {
   Progress,
 } from "@chakra-ui/react";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { getQuiz } from "../services/questions";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { NEXT_QUESTION, UPDATE_SCORE } from "../redux/actionsTypes";
 
@@ -74,7 +73,7 @@ const Questions = () => {
     console.log("currentQuestionNumber", currentQuestionNumber);
     if (allQuestions && currentQuestionNumber === allQuestions.length) {
       setQuizFinished(true);
-      navigate("/finalscreen");
+      navigate("/score");
     }
   }, [allQuestions, currentQuestionNumber]);
 
