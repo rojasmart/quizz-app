@@ -70,7 +70,7 @@ const Questions = () => {
 
   useEffect(() => {
     setCurrentQuestion(allQuestions[currentQuestionNumber]);
-    console.log("currentQuestionNumber", currentQuestionNumber);
+
     if (allQuestions && currentQuestionNumber === allQuestions.length) {
       setQuizFinished(true);
       navigate("/score");

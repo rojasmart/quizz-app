@@ -1,4 +1,4 @@
-import { START_QUIZ, UPDATE_SCORE, NEXT_QUESTION } from "./actionsTypes";
+import { START_QUIZ, UPDATE_SCORE, NEXT_QUESTION, RESET } from "./actionsTypes";
 
 export const handleCategoryChange = (payload) => ({
   type: START_QUIZ,
@@ -12,5 +12,10 @@ export const handleDifficultyChange = (payload) => ({
 
 export const handleTypeChange = (payload) => ({
   type: NEXT_QUESTION,
+  payload,
+});
+
+export const handleReset = (payload) => ({
+  type: RESET,
   payload,
 });

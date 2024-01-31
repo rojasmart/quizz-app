@@ -1,9 +1,20 @@
 import { Button, Stack, Container, Text } from "@chakra-ui/react";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { RESET } from "../redux/actionsTypes";
 
 export default function FinalScreen() {
   const score = useSelector((state) => state.score);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleReset = () => {
+    dispatch({ type: RESET });
+    navigate("/");
+  };
 
   return (
     <Stack>
@@ -12,7 +23,7 @@ export default function FinalScreen() {
       </Container>
       <Container maxW="lg">
         <Text fontSize="me">You scored... {score}</Text>
-        <Button>Play again</Button>
+        <Button onClick={handleReset}>Play again</Button>
       </Container>
     </Stack>
   );

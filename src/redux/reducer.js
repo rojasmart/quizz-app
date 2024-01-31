@@ -1,4 +1,4 @@
-import { START_QUIZ, UPDATE_SCORE, NEXT_QUESTION } from "./actionsTypes";
+import { START_QUIZ, UPDATE_SCORE, NEXT_QUESTION, RESET } from "./actionsTypes";
 
 const initialState = {
   category: "",
@@ -23,6 +23,10 @@ const reducer = (state = initialState, action) => {
 
         score: state.score,
         currentQuestionNumber: state.currentQuestionNumber + 1,
+      };
+    case RESET:
+      return {
+        initialState,
       };
     default:
       return action;
