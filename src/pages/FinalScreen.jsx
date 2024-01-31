@@ -1,4 +1,4 @@
-import { Button, Stack, Container, Text } from "@chakra-ui/react";
+import { Button, HStack, Stack, Container, Text, Card } from "@chakra-ui/react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -17,14 +17,23 @@ export default function FinalScreen() {
   };
 
   return (
-    <Stack>
+    <HStack>
       <Container maxW="lg">
-        <Text fontSize="me">Quiz completed, You scored...</Text>
+        <Text fontSize="6xl">Quiz completed</Text>
+        <Text fontSize="6xl" as="b">
+          You scored...
+        </Text>
       </Container>
       <Container maxW="lg">
-        <Text fontSize="me">You scored... {score}</Text>
-        <Button onClick={handleReset}>Play again</Button>
+        <Stack space="6">
+          <Card minHeight={"400px"}>
+            <Text fontSize="me">{score} out 10</Text>
+          </Card>
+          <Button w="100%" minH="60px" colorScheme="pink" onClick={handleReset}>
+            Play again
+          </Button>
+        </Stack>
       </Container>
-    </Stack>
+    </HStack>
   );
 }
