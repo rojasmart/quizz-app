@@ -3,13 +3,13 @@ import { START_QUIZ, UPDATE_SCORE, NEXT_QUESTION, RESET } from "./actionsTypes";
 const initialState = {
   category: "",
   score: 0,
-  currentQuestionNumber: 0,
+  currentQuestionNumber: 1,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case START_QUIZ:
-      return { ...state, category: action, score: 0, currentQuestionNumber: 0 };
+      return { ...state, category: action, score: 0, currentQuestionNumber: 1 };
     case UPDATE_SCORE:
       return {
         ...state,

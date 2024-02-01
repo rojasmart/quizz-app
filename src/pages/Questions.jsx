@@ -42,7 +42,7 @@ const Questions = () => {
 
   const subject = useSelector((state) => state.category.payload);
   const currentQuestionNumber = useSelector(
-    (state) => state.currentQuestionNumber + 1
+    (state) => state.currentQuestionNumber
   );
   const score = useSelector((state) => state.score);
 
@@ -69,11 +69,13 @@ const Questions = () => {
   }, [subject]);
 
   useEffect(() => {
-    setCurrentQuestion(allQuestions[currentQuestionNumber]);
+    if (allQuestions.length > 0) {
+      setCurrentQuestion(allQuestions[currentQuestionNumber - 1]);
 
-    if (allQuestions && currentQuestionNumber === allQuestions.length) {
-      setQuizFinished(true);
-      navigate("/score");
+      if (currentQuestionNumber > allQuestions.length) {
+        setQuizFinished(true);
+        navigate("/score");
+      }
     }
   }, [allQuestions, currentQuestionNumber]);
 
