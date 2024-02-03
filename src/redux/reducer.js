@@ -9,18 +9,22 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case START_QUIZ:
-      return { ...state, category: action, score: 0, currentQuestionNumber: 1 };
+      return {
+        ...state,
+        category: action.payload,
+        icon: action.payload,
+        score: 0,
+        currentQuestionNumber: 1,
+      };
     case UPDATE_SCORE:
       return {
         ...state,
-
         score: state.score + 1,
         currentQuestionNumber: state.currentQuestionNumber,
       };
     case NEXT_QUESTION:
       return {
         ...state,
-
         score: state.score,
         currentQuestionNumber: state.currentQuestionNumber + 1,
       };

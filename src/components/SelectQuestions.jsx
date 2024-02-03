@@ -1,9 +1,10 @@
 import { Stack, Button, Image } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 
-const SelectQuestions = ({ data, getCategory }) => {
-  const handleSubmit = (e) => {
-    getCategory(e.target.value);
+const SelectQuestions = ({ data, getCategory, setIcon }) => {
+  const handleSubmit = (item) => {
+    getCategory(item.title);
+    setIcon(item.icon);
   };
 
   return (
@@ -20,7 +21,7 @@ const SelectQuestions = ({ data, getCategory }) => {
             />
           }
           key={index}
-          onClick={handleSubmit}
+          onClick={() => handleSubmit(item)}
           value={item.title}
           pt="40px"
           pb="40px"
@@ -42,6 +43,7 @@ const SelectQuestions = ({ data, getCategory }) => {
 SelectQuestions.propTypes = {
   data: PropTypes.string,
   getCategory: PropTypes.string,
+  setIcon: PropTypes.string,
 };
 
 export default SelectQuestions;

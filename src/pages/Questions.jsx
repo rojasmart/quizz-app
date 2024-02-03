@@ -40,10 +40,12 @@ const Questions = () => {
 
   const [quizFinished, setQuizFinished] = useState(false);
 
-  const subject = useSelector((state) => state.category.payload);
+  const subject = useSelector((state) => state.category.category);
+
   const currentQuestionNumber = useSelector(
     (state) => state.currentQuestionNumber
   );
+
   const score = useSelector((state) => state.score);
 
   const dispatch = useDispatch();

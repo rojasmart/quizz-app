@@ -17,6 +17,7 @@ import { handleCategoryChange } from "../redux/actions";
 export default function StartPage() {
   const [data, setData] = useState([]);
   const [category, setCategory] = useState("");
+  const [icon, setIcon] = useState(null);
 
   useEffect(() => {
     getQuiz().then((result) => {
@@ -28,7 +29,7 @@ export default function StartPage() {
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    dispatch(handleCategoryChange(category));
+    dispatch(handleCategoryChange(category, icon));
     navigate("/questions");
   };
 
@@ -52,7 +53,11 @@ export default function StartPage() {
         </Container>
         <Container maxW="lg">
           <form onSubmit={handleSubmit}>
-            <SelectQuestions data={data} getCategory={pull_category} />
+            <SelectQuestions
+              data={data}
+              getCategory={pull_category}
+              setIcon={setIcon}
+            />
           </form>
         </Container>
       </Stack>

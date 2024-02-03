@@ -1,8 +1,11 @@
 import { START_QUIZ, UPDATE_SCORE, NEXT_QUESTION, RESET } from "./actionsTypes";
 
-export const handleCategoryChange = (payload) => ({
+export const handleCategoryChange = (category, icon) => ({
   type: START_QUIZ,
-  payload,
+  payload: {
+    category,
+    icon,
+  },
 });
 
 export const handleDifficultyChange = (payload) => ({
