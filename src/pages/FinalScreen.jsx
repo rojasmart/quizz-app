@@ -6,6 +6,7 @@ import {
   Text,
   Card,
   Image,
+  Flex,
 } from "@chakra-ui/react";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -38,26 +39,22 @@ export default function FinalScreen() {
       </Container>
       <Container maxW="lg">
         <Stack space="6">
-          <Card minHeight={"400px"} textAlign={"center"}>
-            <HStack>
+          <Card
+            minHeight={"400px"}
+            textAlign={"center"}
+            justifyContent={"center"}
+            borderRadius={14}
+          >
+            <Flex gap={"8"} justifyContent={"center"}>
               <Image
                 src={icon}
                 p="8px"
-                borderRadius={"9px"}
+                borderRadius={14}
                 backgroundColor={"white"}
-                pt="40px"
-                pb="40px"
-                sx={{
-                  display: "flex",
-                  justifyContent: "start",
-                  gap: "6",
-                  borderRadius: "20px",
-                  fontSize: "18",
-                }}
               />
 
               <Text fontSize="4xl">{category}</Text>
-            </HStack>
+            </Flex>
             <Text fontSize="170px">{score}</Text>
             <Text fontSize="me">out of 10</Text>
           </Card>
