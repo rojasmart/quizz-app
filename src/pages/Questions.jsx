@@ -5,6 +5,7 @@ import {
   Container,
   Text,
   Progress,
+  Box,
 } from "@chakra-ui/react";
 
 import { useEffect, useState } from "react";
@@ -142,7 +143,19 @@ const Questions = () => {
                 currentQuestion.options.map((option, index) => {
                   return (
                     <Button
-                      leftIcon={<Text>{letters[index]}</Text>}
+                      minHeight={"92px"}
+                      fontSize={28}
+                      borderRadius={24}
+                      leftIcon={
+                        <Box
+                          borderRadius={24}
+                          sx={{ backgroundColor: "var(--light-gray)" }}
+                          color={"black"}
+                          p={2}
+                        >
+                          {letters[index]}
+                        </Box>
+                      }
                       display={"flex"}
                       type="button"
                       justifyContent={"flex-start"}
@@ -177,8 +190,6 @@ const Questions = () => {
                                     : ""
                                 }
                               `}
-                      p="10"
-                      colorScheme="blue"
                     >
                       {option}
                     </Button>
@@ -197,7 +208,15 @@ const Questions = () => {
               </Button>
             )}
             {!isSubmitted && (
-              <Button w="100%" colorScheme="purple" type="submit" p="10">
+              <Button
+                w="100%"
+                sx={{ backgroundColor: "var(--purple)" }}
+                _hover={{ backgroundColor: "#c77ef5" }}
+                fontSize={28}
+                borderRadius={24}
+                type="submit"
+                p="10"
+              >
                 Submit Answer
               </Button>
             )}
