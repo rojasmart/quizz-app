@@ -47,11 +47,13 @@ export default function StartPage() {
         spacing="44px"
         p="10"
       >
-        <Container maxW="lg">
-          <Text fontSize="5xl">Welcome to the Frontend Quiz!</Text>
-          <Text fontSize="md">Pick a subject to get started</Text>
+        <Container maxW="lg" h={"520px"}>
+          <Text fontSize="6xl">Welcome to the Frontend Quiz!</Text>
+          <Text fontSize="xl" as="i">
+            Pick a subject to get started
+          </Text>
         </Container>
-        <Container maxW="lg">
+        <Container maxW="lg" h={"520px"}>
           <form onSubmit={handleSubmit}>
             <SelectQuestions
               data={data}
