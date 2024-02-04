@@ -143,15 +143,21 @@ const Questions = () => {
                 currentQuestion.options.map((option, index) => {
                   return (
                     <Button
+                      textAlign={"left"}
+                      whiteSpace={"normal"}
                       minHeight={"92px"}
                       fontSize={28}
                       borderRadius={24}
                       leftIcon={
                         <Box
-                          borderRadius={24}
+                          borderRadius={12}
                           sx={{ backgroundColor: "var(--light-gray)" }}
                           color={"black"}
-                          p={2}
+                          pl={5}
+                          pr={5}
+                          pt={3}
+                          pb={3}
+                          mr={3}
                         >
                           {letters[index]}
                         </Box>
