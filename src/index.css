@@ -18,12 +18,22 @@
   --green: hsla(163, 100%, 41%, 1);
 }
 
-body {
+.chakra-ui-dark {
+  background-image: url("./assets/images/pattern-background-desktop-dark.svg") !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% 100% !important;
+  min-height: 100vh !important;
+  background-color: var(--dark-navy) !important;
+}
+
+.chakra-ui-light {
   background-image: url("./assets/images/pattern-background-desktop-light.svg") !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: 100% 100% !important;
   min-height: 100vh !important;
+  background-color: var(--light-gray) !important;
 }
 
 body > #root > div {

@@ -49,7 +49,7 @@ export default function StartPage() {
       >
         <Container maxW="lg" h={"520px"}>
           <Text fontSize="6xl" mb={"50px"}>
-            Welcome to the Frontend Quiz!
+            Welcome to the <Text as="b">Frontend Quiz! </Text>
           </Text>
           <Text fontSize="xl" as="i">
             Pick a subject to get started
