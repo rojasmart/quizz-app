@@ -124,18 +124,23 @@ const Questions = () => {
       spacing="44px"
       p="10"
     >
-      <Container maxW="lg">
-        <Text fontSize="md">
+      <Container maxW="lg" h={"520px"}>
+        <Text fontSize="xl" as="i">
           Question {currentQuestionNumber} of {allQuestions.length}
         </Text>
         {currentQuestion && (
-          <Text fontSize="5xl">{currentQuestion.question}</Text>
+          <Text fontSize="5xl" mt={6}>
+            {currentQuestion.question}
+          </Text>
         )}
-        <Container>
-          <Progress value={(currentQuestionNumber / totalQuestions) * 100} />
-        </Container>
+
+        <Progress
+          mt={"200px"}
+          borderRadius={"20px"}
+          value={(currentQuestionNumber / totalQuestions) * 100}
+        />
       </Container>
-      <Container maxW="lg">
+      <Container maxW="lg" h={"520px"}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <VStack spacing={4}>
             <Stack spacing={4} direction="column" w="100%">
@@ -143,6 +148,10 @@ const Questions = () => {
                 currentQuestion.options.map((option, index) => {
                   return (
                     <Button
+                      sx={{
+                        backgroundColor: "var(--pure-white)",
+                        color: "var(--dark-navy)",
+                      }}
                       textAlign={"left"}
                       whiteSpace={"normal"}
                       minHeight={"92px"}
