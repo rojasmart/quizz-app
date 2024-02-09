@@ -19,8 +19,8 @@ export default function FinalScreen() {
   const category = useSelector((state) => state.category.category);
   const icon = useSelector((state) => state.icon.icon);
 
-  console.log("icon ending", icon);
-  console.log("category ending", category);
+  const subject = useSelector((state) => state.category.category);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -30,7 +30,19 @@ export default function FinalScreen() {
   };
 
   return (
-    <HStack>
+    <HStack flexWrap={"wrap"}>
+      <Stack w={"100%"}>
+        <Flex gap={"8"} justifyContent={"left"}>
+          <Image
+            src={icon}
+            p="8px"
+            borderRadius={14}
+            backgroundColor={"white"}
+          />
+
+          <Text fontSize="4xl">{subject}</Text>
+        </Flex>
+      </Stack>
       <Container maxW="lg">
         <Text fontSize="6xl">Quiz completed</Text>
         <Text fontSize="6xl" as="b">

@@ -31,6 +31,8 @@ const SelectQuestions = ({ data, getCategory, setIcon }) => {
             gap: "6",
             borderRadius: "20px",
             fontSize: "18",
+            backgroundColor: "var(--pure-white)",
+            color: "var(--dark-navy)",
           }}
         >
           {item.title}

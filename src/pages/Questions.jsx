@@ -6,6 +6,8 @@ import {
   Text,
   Progress,
   Box,
+  Image,
+  Flex,
 } from "@chakra-ui/react";
 
 import { useEffect, useState } from "react";
@@ -42,6 +44,8 @@ const Questions = () => {
   const [quizFinished, setQuizFinished] = useState(false);
 
   const subject = useSelector((state) => state.category.category);
+
+  const icon = useSelector((state) => state.icon.icon);
 
   const currentQuestionNumber = useSelector(
     (state) => state.currentQuestionNumber
@@ -123,7 +127,20 @@ const Questions = () => {
       justify="center"
       spacing="44px"
       p="10"
+      flexWrap={"wrap"}
     >
+      <Stack w={"100%"}>
+        <Flex gap={"8"} justifyContent={"left"}>
+          <Image
+            src={icon}
+            p="8px"
+            borderRadius={14}
+            backgroundColor={"white"}
+          />
+
+          <Text fontSize="4xl">{subject}</Text>
+        </Flex>
+      </Stack>
       <Container maxW="lg" h={"520px"}>
         <Text fontSize="xl" as="i">
           Question {currentQuestionNumber} of {allQuestions.length}
