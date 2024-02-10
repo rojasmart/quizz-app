@@ -8,7 +8,10 @@ import {
   Box,
   Image,
   Flex,
+  Icon,
 } from "@chakra-ui/react";
+
+import { WarningIcon } from "@chakra-ui/icons";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -169,6 +172,7 @@ const Questions = () => {
                         backgroundColor: "var(--pure-white)",
                         color: "var(--dark-navy)",
                       }}
+                      _hover={{ backgroundColor: "var(--pure-white) " }}
                       textAlign={"left"}
                       whiteSpace={"normal"}
                       minHeight={"92px"}
@@ -256,7 +260,12 @@ const Questions = () => {
               </Button>
             )}
             {!buttonClicked && isNone && (
-              <Text>Please click a button before submitting.</Text>
+              <Flex gap={3} alignItems={"center"}>
+                <Icon as={WarningIcon} color={"red"} />
+                <Text color={"red"}>
+                  Please click a button before submitting.
+                </Text>
+              </Flex>
             )}
           </VStack>
         </form>

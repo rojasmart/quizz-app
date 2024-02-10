@@ -73,10 +73,13 @@ export default function FinalScreen() {
           <Button
             w="100%"
             minH="60px"
+            fontSize={28}
             sx={{ backgroundColor: "var(--purple)" }}
+            _hover={{ backgroundColor: "#c77ef5" }}
             color={"white"}
+            p="10"
             onClick={handleReset}
-            borderRadius={14}
+            borderRadius={24}
           >
             Play again
           </Button>

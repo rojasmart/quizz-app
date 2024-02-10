@@ -25,6 +25,7 @@ const SelectQuestions = ({ data, getCategory, setIcon }) => {
           value={item.title}
           pt="40px"
           pb="40px"
+          _hover={{ backgroundColor: "var(--pure-white) " }}
           sx={{
             display: "flex",
             justifyContent: "start",
