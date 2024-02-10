@@ -241,6 +241,7 @@ const Questions = () => {
                 borderRadius={24}
                 p="10"
                 onClick={handleNextQuestion}
+                color={"white"}
               >
                 Next Question
               </Button>
