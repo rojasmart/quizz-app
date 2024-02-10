@@ -49,7 +49,7 @@ button {
 }
 
 .active-answer {
-  border: 3px solid var(--yellow);
+  border: 3px solid var(--purple);
 }
 .correct-answer {
   border: 3px solid var(--green);

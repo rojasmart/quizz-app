@@ -129,19 +129,19 @@ const Questions = () => {
       p="10"
       flexWrap={"wrap"}
     >
-      <Stack w={"100%"}>
-        <Flex gap={"8"} justifyContent={"left"}>
-          <Image
-            src={icon}
-            p="8px"
-            borderRadius={14}
-            backgroundColor={"white"}
-          />
+      <Container maxW="lg" h={"750px"}>
+        <Stack mb={20} w={"100%"}>
+          <Flex gap={"8"} justifyContent={"left"}>
+            <Image
+              src={icon}
+              p="8px"
+              borderRadius={14}
+              backgroundColor={"white"}
+            />
 
-          <Text fontSize="4xl">{subject}</Text>
-        </Flex>
-      </Stack>
-      <Container maxW="lg" h={"520px"}>
+            <Text fontSize="4xl">{subject}</Text>
+          </Flex>
+        </Stack>
         <Text fontSize="xl" as="i">
           Question {currentQuestionNumber} of {allQuestions.length}
         </Text>
@@ -152,12 +152,12 @@ const Questions = () => {
         )}
 
         <Progress
-          mt={"200px"}
+          mt={"100px"}
           borderRadius={"20px"}
           value={(currentQuestionNumber / totalQuestions) * 100}
         />
       </Container>
-      <Container maxW="lg" h={"520px"}>
+      <Container maxW="lg" pt={140} h={"750px"}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <VStack spacing={4}>
             <Stack spacing={4} direction="column" w="100%">
@@ -172,7 +172,7 @@ const Questions = () => {
                       textAlign={"left"}
                       whiteSpace={"normal"}
                       minHeight={"92px"}
-                      fontSize={28}
+                      fontSize={20}
                       borderRadius={24}
                       leftIcon={
                         <Box
@@ -233,6 +233,8 @@ const Questions = () => {
                 w="100%"
                 colorScheme="purple"
                 type="button"
+                fontSize={28}
+                borderRadius={24}
                 p="10"
                 onClick={handleNextQuestion}
               >
@@ -248,6 +250,7 @@ const Questions = () => {
                 borderRadius={24}
                 type="submit"
                 p="10"
+                color={"white"}
               >
                 Submit Answer
               </Button>

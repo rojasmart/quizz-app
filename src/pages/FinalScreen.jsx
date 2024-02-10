@@ -31,25 +31,25 @@ export default function FinalScreen() {
 
   return (
     <HStack flexWrap={"wrap"}>
-      <Stack w={"100%"}>
-        <Flex gap={"8"} justifyContent={"left"}>
-          <Image
-            src={icon}
-            p="8px"
-            borderRadius={14}
-            backgroundColor={"white"}
-          />
+      <Container maxW="lg" h={"750px"}>
+        <Stack mb={100} w={"100%"}>
+          <Flex gap={"8"} justifyContent={"left"}>
+            <Image
+              src={icon}
+              p="8px"
+              borderRadius={14}
+              backgroundColor={"white"}
+            />
 
-          <Text fontSize="4xl">{subject}</Text>
-        </Flex>
-      </Stack>
-      <Container maxW="lg">
+            <Text fontSize="4xl">{subject}</Text>
+          </Flex>
+        </Stack>
         <Text fontSize="6xl">Quiz completed</Text>
         <Text fontSize="6xl" as="b">
           You scored...
         </Text>
       </Container>
-      <Container maxW="lg">
+      <Container mt={210} maxW="lg" h={"750px"}>
         <Stack space="6">
           <Card
             minHeight={"400px"}
