@@ -30,9 +30,9 @@ export default function FinalScreen() {
   };
 
   return (
-    <HStack flexWrap={"wrap"}>
-      <Container maxW="lg" h={"750px"}>
-        <Stack mb={100} w={"100%"}>
+    <HStack flexWrap={"wrap"} p={["5", "10"]}>
+      <Container maxW="lg" h={["120px", "750px"]}>
+        <Stack mb={[50, 100]} w={"100%"}>
           <Flex gap={"8"} justifyContent={"left"}>
             <Image
               src={icon}
@@ -44,8 +44,8 @@ export default function FinalScreen() {
             <Text fontSize="4xl">{subject}</Text>
           </Flex>
         </Stack>
-        <Text fontSize="6xl">Quiz completed</Text>
-        <Text fontSize="6xl" as="b">
+        <Text fontSize={["5xl", "6xl"]}>Quiz completed</Text>
+        <Text fontSize={["5xl", "6xl"]} as="b">
           You scored...
         </Text>
       </Container>
@@ -73,7 +73,7 @@ export default function FinalScreen() {
           <Button
             w="100%"
             minH="60px"
-            fontSize={28}
+            fontSize={[20, 28]}
             sx={{ backgroundColor: "var(--purple)" }}
             _hover={{ backgroundColor: "#c77ef5" }}
             color={"white"}

@@ -61,4 +61,7 @@ button {
 @media only screen and (max-width: 768px) {
 }
 @media only screen and (max-width: 375px) {
+  body > #root > div {
+    height: auto;
+  }
 }

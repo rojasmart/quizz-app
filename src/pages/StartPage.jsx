@@ -45,10 +45,10 @@ export default function StartPage() {
         align="center"
         justify="center"
         spacing="44px"
-        p="10"
+        p={["5", "10"]}
       >
-        <Container maxW="lg" h={"520px"}>
-          <Text fontSize="6xl" mb={"50px"}>
+        <Container maxW="lg" h={["320px", "520px"]}>
+          <Text fontSize={["5xl", "6xl"]} mb={"50px"}>
             Welcome to the <Text as="b">Frontend Quiz! </Text>
           </Text>
           <Text fontSize="xl" as="i">

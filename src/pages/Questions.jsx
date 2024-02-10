@@ -129,10 +129,10 @@ const Questions = () => {
       align="center"
       justify="center"
       spacing="44px"
-      p="10"
+      p={["5", "10"]}
       flexWrap={"wrap"}
     >
-      <Container maxW="lg" h={"750px"}>
+      <Container maxW="lg" h={["320px", "750px"]}>
         <Stack mb={20} w={"100%"}>
           <Flex gap={"8"} justifyContent={"left"}>
             <Image
@@ -149,13 +149,13 @@ const Questions = () => {
           Question {currentQuestionNumber} of {allQuestions.length}
         </Text>
         {currentQuestion && (
-          <Text fontSize="5xl" mt={6}>
+          <Text fontSize={["3xl", "5xl"]} mt={6}>
             {currentQuestion.question}
           </Text>
         )}
 
         <Progress
-          mt={"100px"}
+          mt={["60px", "100px"]}
           borderRadius={"20px"}
           value={(currentQuestionNumber / totalQuestions) * 100}
         />
@@ -176,7 +176,7 @@ const Questions = () => {
                       textAlign={"left"}
                       whiteSpace={"normal"}
                       minHeight={"92px"}
-                      fontSize={20}
+                      fontSize={[17, 20]}
                       borderRadius={24}
                       leftIcon={
                         <Box
@@ -237,7 +237,7 @@ const Questions = () => {
                 w="100%"
                 colorScheme="purple"
                 type="button"
-                fontSize={28}
+                fontSize={[20, 28]}
                 borderRadius={24}
                 p="10"
                 onClick={handleNextQuestion}
@@ -250,7 +250,7 @@ const Questions = () => {
                 w="100%"
                 sx={{ backgroundColor: "var(--purple)" }}
                 _hover={{ backgroundColor: "#c77ef5" }}
-                fontSize={28}
+                fontSize={[20, 28]}
                 borderRadius={24}
                 type="submit"
                 p="10"
