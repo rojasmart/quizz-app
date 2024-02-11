@@ -19,7 +19,7 @@
 }
 
 .chakra-ui-dark {
-  background-image: url("./assets/images/pattern-background-desktop-dark.svg") !important;
+  background-image: url("../images/pattern-background-desktop-dark.svg") !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: 100% 100% !important;
@@ -28,7 +28,7 @@
 }
 
 .chakra-ui-light {
-  background-image: url("./assets/images/pattern-background-desktop-light.svg") !important;
+  background-image: url("../images/pattern-background-desktop-light.svg") !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: 100% 100% !important;
