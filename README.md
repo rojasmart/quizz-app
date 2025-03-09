@@ -1,5 +1,4 @@
 # Frontend Quizz App
-
-This is a solution to the [Frontend quiz app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/frontend-quiz-app-BE7xkzXQnU).
+![image](https://github.com/user-attachments/assets/5288b5d7-000c-4382-bf07-f06f6e52e2f0)
 
 #### Created with React + VITE + ChakraUI + Redux + Redux Persist + React Router
