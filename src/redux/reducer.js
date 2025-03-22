@@ -2,6 +2,7 @@ import { START_QUIZ, UPDATE_SCORE, NEXT_QUESTION, RESET } from "./actionsTypes";
 
 const initialState = {
   category: "",
+  icon: "",
   score: 0,
   currentQuestionNumber: 1,
 };
@@ -11,8 +12,8 @@ const reducer = (state = initialState, action) => {
     case START_QUIZ:
       return {
         ...state,
-        category: action.payload,
-        icon: action.payload,
+        category: action.payload.category,
+        icon: action.payload.icon,
         score: 0,
         currentQuestionNumber: 1,
       };
@@ -20,7 +21,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         score: state.score + 1,
-        currentQuestionNumber: state.currentQuestionNumber,
+        
       };
     case NEXT_QUESTION:
       return {
