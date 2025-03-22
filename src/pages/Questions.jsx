@@ -1,15 +1,4 @@
-import {
-  Button,
-  VStack,
-  Stack,
-  Container,
-  Text,
-  Progress,
-  Box,
-  Image,
-  Flex,
-  Icon,
-} from "@chakra-ui/react";
+import { Button, VStack, Stack, Container, Text, Progress, Box, Image, Flex, Icon } from "@chakra-ui/react";
 
 import { WarningIcon } from "@chakra-ui/icons";
 
@@ -46,13 +35,11 @@ const Questions = () => {
 
   const [quizFinished, setQuizFinished] = useState(false);
 
-  const subject = useSelector((state) => state.category.category);
+  const subject = useSelector((state) => state.category);
 
-  const icon = useSelector((state) => state.icon.icon);
+  const icon = useSelector((state) => state.icon);
 
-  const currentQuestionNumber = useSelector(
-    (state) => state.currentQuestionNumber
-  );
+  const currentQuestionNumber = useSelector((state) => state.currentQuestionNumber);
 
   const score = useSelector((state) => state.score);
 
@@ -124,23 +111,11 @@ const Questions = () => {
   const letters = ["A", "B", "C", "D"];
 
   return (
-    <Stack
-      direction={["column", "row"]}
-      align="center"
-      justify="center"
-      spacing="44px"
-      p={["5", "10"]}
-      flexWrap={"wrap"}
-    >
+    <Stack direction={["column", "row"]} align="center" justify="center" spacing="44px" p={["5", "10"]} flexWrap={"wrap"}>
       <Container maxW="lg" h={["320px", "750px"]}>
         <Stack mb={20} w={"100%"}>
           <Flex gap={"8"} justifyContent={"left"}>
-            <Image
-              src={icon}
-              p="8px"
-              borderRadius={14}
-              backgroundColor={"white"}
-            />
+            <Image src={icon} p="8px" borderRadius={14} backgroundColor={"white"} />
 
             <Text fontSize="4xl">{subject}</Text>
           </Flex>
@@ -154,11 +129,7 @@ const Questions = () => {
           </Text>
         )}
 
-        <Progress
-          mt={["60px", "100px"]}
-          borderRadius={"20px"}
-          value={(currentQuestionNumber / totalQuestions) * 100}
-        />
+        <Progress mt={["60px", "100px"]} borderRadius={"20px"} value={(currentQuestionNumber / totalQuestions) * 100} />
       </Container>
       <Container maxW="lg" pt={140} h={"750px"}>
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -179,16 +150,7 @@ const Questions = () => {
                       fontSize={[17, 20]}
                       borderRadius={24}
                       leftIcon={
-                        <Box
-                          borderRadius={12}
-                          sx={{ backgroundColor: "var(--light-gray)" }}
-                          color={"black"}
-                          pl={5}
-                          pr={5}
-                          pt={3}
-                          pb={3}
-                          mr={3}
-                        >
+                        <Box borderRadius={12} sx={{ backgroundColor: "var(--light-gray)" }} color={"black"} pl={5} pr={5} pt={3} pb={3} mr={3}>
                           {letters[index]}
                         </Box>
                       }
@@ -199,29 +161,11 @@ const Questions = () => {
                       value={option}
                       onClick={(e) => handleOptionClick(e, index)}
                       className={`
+                                ${isActiveAnswer === index ? "active-answer" : ""} 
+                                ${isSubmitted && selectedOption === currentQuestion.answer && selectedOption === option ? "correct-answer" : ""} 
+                                ${isSubmitted && selectedOption !== currentQuestion.answer && selectedOption === option ? "wrong-answer" : ""}
                                 ${
-                                  isActiveAnswer === index
-                                    ? "active-answer"
-                                    : ""
-                                } 
-                                ${
-                                  isSubmitted &&
-                                  selectedOption === currentQuestion.answer &&
-                                  selectedOption === option
-                                    ? "correct-answer"
-                                    : ""
-                                } 
-                                ${
-                                  isSubmitted &&
-                                  selectedOption !== currentQuestion.answer &&
-                                  selectedOption === option
-                                    ? "wrong-answer"
-                                    : ""
-                                }
-                                ${
-                                  isSubmitted &&
-                                  selectedOption !== currentQuestion.answer &&
-                                  currentQuestion.answer === option
+                                  isSubmitted && selectedOption !== currentQuestion.answer && currentQuestion.answer === option
                                     ? "correct-answer"
                                     : ""
                                 }
@@ -263,9 +207,7 @@ const Questions = () => {
             {!buttonClicked && isNone && (
               <Flex gap={3} alignItems={"center"}>
                 <Icon as={WarningIcon} color={"red"} />
-                <Text color={"red"}>
-                  Please click a button before submitting.
-                </Text>
+                <Text color={"red"}>Please click a button before submitting.</Text>
               </Flex>
             )}
           </VStack>
