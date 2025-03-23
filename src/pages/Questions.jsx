@@ -1,6 +1,6 @@
 import { Button, VStack, Stack, Container, Text, Progress, Box, Image, Flex, Icon } from "@chakra-ui/react";
 
-import { WarningIcon } from "@chakra-ui/icons";
+import { WarningIcon, CheckIcon, CloseIcon } from "@chakra-ui/icons";
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -142,6 +142,7 @@ const Questions = () => {
                       sx={{
                         backgroundColor: "var(--pure-white)",
                         color: "var(--dark-navy)",
+                        position: "relative", // Add position relative
                       }}
                       _hover={{ backgroundColor: "var(--pure-white) " }}
                       textAlign={"left"}
@@ -150,9 +151,36 @@ const Questions = () => {
                       fontSize={[17, 20]}
                       borderRadius={24}
                       leftIcon={
-                        <Box borderRadius={12} sx={{ backgroundColor: "var(--light-gray)" }} color={"black"} pl={5} pr={5} pt={3} pb={3} mr={3}>
+                        <Box
+                          borderRadius={12}
+                          sx={{
+                            backgroundColor: isSubmitted
+                              ? option === currentQuestion.answer
+                                ? "green.300"
+                                : selectedOption === option
+                                ? "red.300"
+                                : "var(--light-gray)"
+                              : "var(--light-gray)",
+                          }}
+                          color={isSubmitted && (option === currentQuestion.answer || selectedOption === option) ? "white" : "black"}
+                          pl={5}
+                          pr={5}
+                          pt={3}
+                          pb={3}
+                          mr={3}
+                        >
                           {letters[index]}
                         </Box>
+                      }
+                      rightIcon={
+                        isSubmitted &&
+                        ((selectedOption === currentQuestion.answer && selectedOption === option) ||
+                        (selectedOption !== currentQuestion.answer && currentQuestion.answer === option) ? (
+                          <Icon as={CheckIcon} color="green.500" boxSize={5} position="absolute" right={4} top={9} />
+                        ) : (
+                          selectedOption !== currentQuestion.answer &&
+                          selectedOption === option && <Icon as={CloseIcon} color="red.500" boxSize={5} position="absolute" right={4} top={9} />
+                        ))
                       }
                       display={"flex"}
                       type="button"
@@ -161,15 +189,11 @@ const Questions = () => {
                       value={option}
                       onClick={(e) => handleOptionClick(e, index)}
                       className={`
-                                ${isActiveAnswer === index ? "active-answer" : ""} 
-                                ${isSubmitted && selectedOption === currentQuestion.answer && selectedOption === option ? "correct-answer" : ""} 
-                                ${isSubmitted && selectedOption !== currentQuestion.answer && selectedOption === option ? "wrong-answer" : ""}
-                                ${
-                                  isSubmitted && selectedOption !== currentQuestion.answer && currentQuestion.answer === option
-                                    ? "correct-answer"
-                                    : ""
-                                }
-                              `}
+                      ${isActiveAnswer === index ? "active-answer" : ""} 
+                      ${isSubmitted && selectedOption === currentQuestion.answer && selectedOption === option ? "correct-answer" : ""} 
+                      ${isSubmitted && selectedOption !== currentQuestion.answer && selectedOption === option ? "wrong-answer" : ""}
+                      ${isSubmitted && selectedOption !== currentQuestion.answer && currentQuestion.answer === option ? "correct-answer" : ""}
+                    `}
                     >
                       {option}
                     </Button>
